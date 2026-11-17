@@ -1,0 +1,21 @@
+\begin{table}[t]
+\caption{Illicit F1 by evaluation view (mean over seeds).}
+\label{tab:views}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Model & All test & Unseen entities & Steps 35--42 & Steps 43--49 \\
+\midrule
+XGB, All & 0.803 & 0.808 & 0.898 & 0.035 \\
+XGB, Clean & 0.561 & 0.591 & 0.672 & 0.026 \\
+XGB, Clean+KG & 0.651 & 0.658 & 0.740 & 0.014 \\
+SAGE-Flow & 0.461 & 0.562 & 0.541 & 0.021 \\
+KG-SAGE & 0.376 & 0.629 & 0.443 & 0.028 \\
+\midrule
+\# illicit & 1083 & 1066 & 914 & 169 \\
+\bottomrule
+\end{tabular}}
+\end{table}

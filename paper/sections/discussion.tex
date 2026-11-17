@@ -1,0 +1,58 @@
+\section{Discussion}\label{sec:discussion}
+
+\textbf{When does graph learning help?} Our results separate three claims
+that are usually conflated. (1) \emph{Graph structure carries signal}: yes.
+The TS-KG relations are far more homophilous than the transaction graph
+(Table~\ref{tab:homophily}), and causal KG features add
+\XgbKgGain{} in F1 to XGBoost
+(Table~\ref{tab:main}). The motivation for graph methods on this problem is
+therefore real, but it lies in the \emph{entity} structure that a knowledge
+graph exposes, not in the transaction-to-transaction graph used by prior GNN
+work. (2) \emph{Message passing exploits it}: only partly. On transactions of new
+entities, KG-SAGE clearly improves over a graph-free network and over message
+passing on the transaction graph, so learning over the KG does capture entity
+signal; but it never matches a tree ensemble given the same knowledge, and it
+raises many false alarms on recurring licit entities whose neighbourhoods
+change over time. High homophily on the training graph is therefore not
+sufficient for a GNN advantage under distribution shift, which refines the
+conditions conjectured in~\cite{maganti2026}. (3) \emph{Prior reports of
+strong performance}: largely a consequence of leaked features, which account for
+\XgbLeakDrop{} of the \XgbAllFone{} F1 of XGBoost (\XgbLeakShare{}). For
+practitioners, the actionable recommendation is to build the entity knowledge
+graph, compute causal features from it, and give them to a well-regularised
+tree ensemble with class weights and a validation-tuned threshold; graph
+neural networks should be evaluated over several later periods, because a
+single validation window can be badly misleading.
+
+\textbf{Label provenance.} Elliptic labels are assigned per controlling
+entity of the input addresses~\cite{weber2019,safar2026}. The perfect
+homophily of \texttt{CO\_SPEND} is therefore partly a property of the
+labelling rule, and the near-perfect homophily of \texttt{CO\_RECEIVE}
+suggests that shared output addresses mostly connect transactions of the same
+entity (change and deposit addresses). A KG that makes entity structure
+explicit thus aligns the model with the structure that defines the labels.
+This is also how investigations work in practice, since attributing addresses
+to entities is the basis of Bitcoin forensics~\cite{meiklejohn2013}, but it
+means that gains measured on Elliptic partly reflect entity re-identification
+\emph{within} a time step. Labels produced by a different process, or
+entity-disjoint evaluation within a step, may show smaller gains. Because
+illicit actors almost never reuse addresses across periods, the
+cross-period form of this problem (memorising known entities) is negligible
+here, as the unseen-entity view confirms.
+
+\textbf{Threats to validity.} (i) A single dataset, two years of Bitcoin
+activity ending in 2017, before SegWit-heavy and Taproot usage. (ii) The
+within-step observation assumption: features and edges of a time step are
+used to score transactions of that step, i.e.\ scoring happens at the end of
+each step; real-time scoring would see fewer neighbours. (iii) The released
+Elliptic++ edges cover only transactions inside the benchmark, so address
+histories are truncated to the sampled transactions rather than the full
+ledger~\cite{safar2026}. (iv) Hyperparameter search was limited by a CPU-only
+budget: tree ensembles use standard settings with early stopping, and the
+graph models select only the learning rate on the validation window; wider
+searches could change the size of the gaps, though not the leakage effect,
+which exceeds every other difference we observe. (v) An earlier version of
+the \textsc{+Nbr} features encoded transactions without KG neighbours as zero,
+which in z-scored space is a valid value; this produced false alarms on
+isolated licit transactions and was corrected by encoding them as missing.
+All reported numbers use the corrected features.

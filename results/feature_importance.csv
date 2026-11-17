@@ -1,0 +1,199 @@
+,xgb_all_shap,xgb_cleankg_shap,kg_sage_gxi,group
+Aggregate_feature_1,0.05116053,0.11300309,0.3708605,predecessor agg.
+Aggregate_feature_10,0.10118884,0.14685594,1.5757166,predecessor agg.
+Aggregate_feature_11,0.020418474,0.026031082,0.089485146,predecessor agg.
+Aggregate_feature_12,0.01036675,0.019678827,0.10968819,predecessor agg.
+Aggregate_feature_13,0.26606873,0.40491775,5.3898945,predecessor agg.
+Aggregate_feature_14,0.13148296,0.17531869,0.8567766,predecessor agg.
+Aggregate_feature_15,0.022809984,0.11048061,0.44188347,predecessor agg.
+Aggregate_feature_16,0.13643174,0.27216697,3.6439595,predecessor agg.
+Aggregate_feature_17,0.021936718,0.046877403,0.10673802,predecessor agg.
+Aggregate_feature_18,0.0072060823,0.016523272,0.13008226,predecessor agg.
+Aggregate_feature_19,0.036788087,0.047662016,0.541219,predecessor agg.
+Aggregate_feature_2,0.14289466,0.45777833,0.12031544,predecessor agg.
+Aggregate_feature_20,0.013358605,0.024188163,0.40398204,predecessor agg.
+Aggregate_feature_21,0.058620643,0.065230906,0.39609045,predecessor agg.
+Aggregate_feature_22,0.048719406,0.054296456,0.8077297,predecessor agg.
+Aggregate_feature_23,0.0063596233,0.019948004,0.110584,predecessor agg.
+Aggregate_feature_24,0.0068859733,0.045399643,0.083544485,predecessor agg.
+Aggregate_feature_25,0.0066420273,0.025631938,0.12468871,predecessor agg.
+Aggregate_feature_26,0.032992233,0.067677595,0.2222251,predecessor agg.
+Aggregate_feature_27,0.038091823,0.033442978,0.2632565,predecessor agg.
+Aggregate_feature_28,0.14412145,0.21219023,0.14726554,predecessor agg.
+Aggregate_feature_29,0.02913342,0.030703975,0.11245406,predecessor agg.
+Aggregate_feature_3,0.028461453,0.08964565,0.08205881,predecessor agg.
+Aggregate_feature_30,0.009661076,0.01817138,0.08461726,predecessor agg.
+Aggregate_feature_31,0.015685944,0.1851717,0.3666105,predecessor agg.
+Aggregate_feature_32,0.37679237,0.71925956,0.22604452,predecessor agg.
+Aggregate_feature_33,0.01999221,0.0446217,0.10956692,predecessor agg.
+Aggregate_feature_34,0.19790575,0.24510685,0.3986804,predecessor agg.
+Aggregate_feature_35,0.0062907087,0.013236634,0.10086836,predecessor agg.
+Aggregate_feature_36,0.002807597,0.021633293,0.07191932,predecessor agg.
+Aggregate_feature_37,0.08064434,,,successor agg. (leaky)
+Aggregate_feature_38,0.18497369,,,successor agg. (leaky)
+Aggregate_feature_39,0.21537852,,,successor agg. (leaky)
+Aggregate_feature_4,0.0826106,0.3426173,0.42915502,predecessor agg.
+Aggregate_feature_40,0.08312961,,,successor agg. (leaky)
+Aggregate_feature_41,0.009263792,,,successor agg. (leaky)
+Aggregate_feature_42,0.013713917,,,successor agg. (leaky)
+Aggregate_feature_43,0.050373234,,,successor agg. (leaky)
+Aggregate_feature_44,0.06285709,,,successor agg. (leaky)
+Aggregate_feature_45,0.27404428,,,successor agg. (leaky)
+Aggregate_feature_46,0.14710721,,,successor agg. (leaky)
+Aggregate_feature_47,0.041363593,,,successor agg. (leaky)
+Aggregate_feature_48,0.0038337456,,,successor agg. (leaky)
+Aggregate_feature_49,0.06253006,,,successor agg. (leaky)
+Aggregate_feature_5,0.010163216,0.0137743,0.086040825,predecessor agg.
+Aggregate_feature_50,0.09758519,,,successor agg. (leaky)
+Aggregate_feature_51,0.09452694,,,successor agg. (leaky)
+Aggregate_feature_52,0.049240775,,,successor agg. (leaky)
+Aggregate_feature_53,0.015790228,,,successor agg. (leaky)
+Aggregate_feature_54,0.02148448,,,successor agg. (leaky)
+Aggregate_feature_55,0.04913674,,,successor agg. (leaky)
+Aggregate_feature_56,0.048650794,,,successor agg. (leaky)
+Aggregate_feature_57,0.048264675,,,successor agg. (leaky)
+Aggregate_feature_58,0.052338924,,,successor agg. (leaky)
+Aggregate_feature_59,0.020330012,,,successor agg. (leaky)
+Aggregate_feature_6,0.023002606,0.028309437,0.077140756,predecessor agg.
+Aggregate_feature_60,0.009758929,,,successor agg. (leaky)
+Aggregate_feature_61,0.096758775,,,successor agg. (leaky)
+Aggregate_feature_62,0.05599335,,,successor agg. (leaky)
+Aggregate_feature_63,0.060816664,,,successor agg. (leaky)
+Aggregate_feature_64,0.056288656,,,successor agg. (leaky)
+Aggregate_feature_65,0.09690361,,,successor agg. (leaky)
+Aggregate_feature_66,0.06579177,,,successor agg. (leaky)
+Aggregate_feature_67,0.06019306,,,successor agg. (leaky)
+Aggregate_feature_68,0.23750174,,,successor agg. (leaky)
+Aggregate_feature_69,0.060772877,,,successor agg. (leaky)
+Aggregate_feature_7,0.08042775,0.26091498,1.6311092,predecessor agg.
+Aggregate_feature_70,0.25075033,,,successor agg. (leaky)
+Aggregate_feature_71,0.06850636,,,successor agg. (leaky)
+Aggregate_feature_72,0.023519332,,,successor agg. (leaky)
+Aggregate_feature_8,0.06535211,0.42061794,1.446612,predecessor agg.
+Aggregate_feature_9,0.1743975,0.09701699,0.02745029,predecessor agg.
+Local_feature_1,0.06705026,0.13924877,0.101762205,tx-intrinsic
+Local_feature_10,0.020897549,0.09994315,0.2605823,tx-intrinsic
+Local_feature_11,0.023961402,0.07674455,0.06173394,tx-intrinsic
+Local_feature_12,0.020059578,0.02414781,0.11400408,tx-intrinsic
+Local_feature_13,0.05338849,0.05957438,0.21555358,tx-intrinsic
+Local_feature_14,0.0060120323,0.02185752,0.16704036,tx-intrinsic
+Local_feature_15,0.0,0.0,0.00074807217,tx-intrinsic
+Local_feature_16,0.19599397,0.3767191,0.09907295,tx-intrinsic
+Local_feature_17,0.014094446,0.094525434,0.06998853,tx-intrinsic
+Local_feature_18,0.12215954,0.1549634,0.07744791,tx-intrinsic
+Local_feature_19,0.010113287,0.037162177,0.030479401,tx-intrinsic
+Local_feature_2,0.26077443,0.40947407,1.3314394,tx-intrinsic
+Local_feature_20,0.030917449,0.15203026,0.78308713,tx-intrinsic
+Local_feature_21,0.010935005,0.029204112,0.61862123,tx-intrinsic
+Local_feature_22,0.04778991,,,address (leaky)
+Local_feature_23,0.15342312,,,address (leaky)
+Local_feature_24,0.02580091,,,address (leaky)
+Local_feature_25,0.08434094,,,address (leaky)
+Local_feature_26,0.014160861,,,address (leaky)
+Local_feature_27,0.008890944,,,address (leaky)
+Local_feature_28,0.06368885,,,address (leaky)
+Local_feature_29,0.0718248,,,address (leaky)
+Local_feature_3,0.34496868,0.7623728,0.592297,tx-intrinsic
+Local_feature_30,0.01575901,,,address (leaky)
+Local_feature_31,0.099542536,,,address (leaky)
+Local_feature_32,0.0070668403,,,address (leaky)
+Local_feature_33,0.0047991658,,,address (leaky)
+Local_feature_34,0.010037352,,,address (leaky)
+Local_feature_35,0.0011232325,,,address (leaky)
+Local_feature_36,0.00021176251,,,address (leaky)
+Local_feature_37,0.0010618006,,,address (leaky)
+Local_feature_38,0.0011269967,,,address (leaky)
+Local_feature_39,0.0008758406,,,address (leaky)
+Local_feature_4,0.005375098,0.0071239225,0.2973422,tx-intrinsic
+Local_feature_40,0.06381005,,,address (leaky)
+Local_feature_41,0.15239218,,,address (leaky)
+Local_feature_42,0.08054768,,,address (leaky)
+Local_feature_43,0.14599192,,,address (leaky)
+Local_feature_44,0.011336654,,,address (leaky)
+Local_feature_45,0.007466522,,,address (leaky)
+Local_feature_46,0.23776364,,,address (leaky)
+Local_feature_47,0.20059742,,,address (leaky)
+Local_feature_48,0.024605077,,,address (leaky)
+Local_feature_49,0.07757452,,,address (leaky)
+Local_feature_5,0.16644087,0.30922952,0.16503036,tx-intrinsic
+Local_feature_50,0.004021837,,,address (leaky)
+Local_feature_51,0.010623882,,,address (leaky)
+Local_feature_52,0.46202925,,,address (leaky)
+Local_feature_53,0.56237835,,,address (leaky)
+Local_feature_54,0.032162376,,,address (leaky)
+Local_feature_55,0.29521197,,,address (leaky)
+Local_feature_56,0.010134308,,,address (leaky)
+Local_feature_57,0.012241223,,,address (leaky)
+Local_feature_58,0.4240952,,,address (leaky)
+Local_feature_59,0.6656386,,,address (leaky)
+Local_feature_6,0.006813433,0.01576119,0.31678233,tx-intrinsic
+Local_feature_60,0.030574871,,,address (leaky)
+Local_feature_61,0.10888178,,,address (leaky)
+Local_feature_62,0.006818523,,,address (leaky)
+Local_feature_63,0.0,,,address (leaky)
+Local_feature_64,0.09406779,,,address (leaky)
+Local_feature_65,0.18255666,,,address (leaky)
+Local_feature_66,0.038707428,,,address (leaky)
+Local_feature_67,0.058423787,,,address (leaky)
+Local_feature_68,0.0075402046,,,address (leaky)
+Local_feature_69,0.0019711056,,,address (leaky)
+Local_feature_7,0.00033255178,8.7047134e-05,0.07042897,tx-intrinsic
+Local_feature_70,0.003215949,,,address (leaky)
+Local_feature_71,0.017970169,,,address (leaky)
+Local_feature_72,0.08072299,,,address (leaky)
+Local_feature_73,0.099281475,,,address (leaky)
+Local_feature_74,0.0004674352,,,address (leaky)
+Local_feature_75,0.0007630828,,,address (leaky)
+Local_feature_76,0.2150957,,,address (leaky)
+Local_feature_77,0.039948925,,,address (leaky)
+Local_feature_78,0.03729977,,,address (leaky)
+Local_feature_79,0.1329057,,,address (leaky)
+Local_feature_8,0.12266736,0.11995278,0.060538575,tx-intrinsic
+Local_feature_80,0.2001165,,,address (leaky)
+Local_feature_81,0.02202525,,,address (leaky)
+Local_feature_82,0.002960159,,,address (leaky)
+Local_feature_83,0.1528839,,,address (leaky)
+Local_feature_84,0.040482063,,,address (leaky)
+Local_feature_85,0.07663552,,,address (leaky)
+Local_feature_86,0.011885314,,,address (leaky)
+Local_feature_87,0.0013700373,,,address (leaky)
+Local_feature_88,0.15013422,,,address (leaky)
+Local_feature_89,0.22217467,,,address (leaky)
+Local_feature_9,0.06745329,0.25338942,0.07007608,tx-intrinsic
+Local_feature_90,0.31447312,,,address (leaky)
+Local_feature_91,0.040334463,,,address (leaky)
+Local_feature_92,0.02232813,,,address (leaky)
+Local_feature_93,0.0066658007,,,address (leaky)
+aug_missing,0.0,0.0,0.2976327,tx-intrinsic
+fees,0.21824013,0.63924366,1.2540052,tx-intrinsic
+in_BTC_max,0.06376918,0.18867059,0.4991617,tx-intrinsic
+in_BTC_mean,0.010864061,0.06826834,0.6503929,tx-intrinsic
+in_BTC_median,0.09473351,0.14717573,0.6099462,tx-intrinsic
+in_BTC_min,0.031542588,0.07604311,0.17693664,tx-intrinsic
+in_BTC_total,0.015215567,0.04464921,0.49558878,tx-intrinsic
+in_txs_degree,0.039394062,0.13874358,0.41946423,tx-intrinsic
+kg_deg_chain,,0.2552161,1.4609789,KG relation degree
+kg_deg_co_receive,,0.4828685,0.35151172,KG relation degree
+kg_deg_co_spend,,0.1720762,0.56833416,KG relation degree
+kg_deg_flow,,0.09113581,0.5540857,KG relation degree
+kg_entity_component_size,,0.24510078,0.25734693,KG entity component
+kg_in_addr_age_max,,0.46079794,3.7977903,KG address history
+kg_in_addr_n,,0.005640933,0.43566042,KG address history
+kg_in_addr_prior_mean,,0.07731788,2.0324814,KG address history
+kg_in_addr_seen_frac,,0.07610208,0.48013365,KG address history
+kg_in_hub_n,,0.14079414,0.3498417,KG address history
+kg_out_addr_age_max,,0.07217418,0.9761622,KG address history
+kg_out_addr_n,,0.0019077056,1.2235425,KG address history
+kg_out_addr_prior_mean,,0.34813857,0.97966886,KG address history
+kg_out_addr_seen_frac,,0.07186575,0.57644534,KG address history
+kg_out_hub_n,,0.03247585,0.2517394,KG address history
+num_input_addresses,0.000755279,0.00015117034,0.2812921,tx-intrinsic
+num_output_addresses,0.036859978,0.1761925,1.3619674,tx-intrinsic
+out_BTC_max,0.012010646,0.06646953,0.2175525,tx-intrinsic
+out_BTC_mean,0.0062393583,0.039530724,0.21921165,tx-intrinsic
+out_BTC_median,0.038765196,0.18138091,0.51924795,tx-intrinsic
+out_BTC_min,0.1213208,0.25726095,0.1916595,tx-intrinsic
+out_BTC_total,0.024387095,0.012063638,0.5492157,tx-intrinsic
+out_txs_degree,0.018852662,,,successor agg. (leaky)
+size,0.63677037,1.2935382,0.9320951,tx-intrinsic
+total_BTC,0.060374588,0.14120576,0.33692834,tx-intrinsic

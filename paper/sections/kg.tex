@@ -1,0 +1,115 @@
+\section{Time-Sliced Transaction--Address Knowledge Graph}\label{sec:kg}
+
+\subsection{Schema}
+The TS-KG (Fig.~\ref{fig:schema}) has two entity types. A \emph{Transaction}
+node exists for each Elliptic transaction. An \emph{Address@t} node exists for
+each pair of an address and a time step in which it is active (920{,}691
+instances of 822{,}942 addresses). There are three relation types:
+\texttt{FLOWS\_TO} between transactions, \texttt{SPENDS\_IN} from an input
+address to a transaction, and \texttt{PAYS} from a transaction to an output
+address. Instantiating addresses per step keeps every edge inside one step.
+The training, validation and test periods are therefore disconnected
+sub-graphs, so message passing can never carry information from the test
+period into training (strictly inductive evaluation), and no address
+statistic computed at a later date ever enters the graph.
+
+An address's \emph{history} enters only through causal attributes of its
+Address@t node: whether and how often it was seen in earlier steps, steps
+since first and last appearance, cumulative earlier input and output counts,
+and its input and output counts within step $t$. Within step $t$ we treat the
+transactions of the step as observable, as in the original benchmark; this
+corresponds to scoring transactions at the end of each step, a fixed-delay
+regime that~\cite{safar2026} identifies as legitimate.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  tx/.style={rectangle, rounded corners=2pt, draw=blue!60!black, fill=blue!8, minimum width=9mm, minimum height=5mm, font=\scriptsize},
+  ad/.style={ellipse, draw=orange!70!black, fill=orange!12, minimum width=10mm, minimum height=5mm, inner sep=1pt, font=\scriptsize},
+  rel/.style={-{Latex[length=1.6mm]}, thick},
+  lab/.style={font=\tiny, fill=white, inner sep=1pt}]
+\node[tx] (t1) at (0,0) {Tx$_1$};
+\node[tx] (t2) at (2.6,0) {Tx$_2$};
+\node[tx] (t3) at (5.2,0) {Tx$_3$};
+\node[ad] (a1) at (1.3,1.35) {A@$t$};
+\node[ad] (a2) at (3.9,1.35) {B@$t$};
+\node[ad] (a3) at (2.6,-1.35) {C@$t$};
+\draw[rel, gray] (t1) -- (t2) node[lab, midway, below=1pt] {FLOWS\_TO};
+\draw[rel, orange!70!black] (a1) -- (t1) node[lab, midway, left=1pt] {SPENDS\_IN};
+\draw[rel, orange!70!black] (a1) -- (t2);
+\draw[rel, blue!60!black] (t2) -- (a2) node[lab, midway, left=1pt] {PAYS};
+\draw[rel, orange!70!black] (a2) -- (t3);
+\draw[rel, blue!60!black] (t1) -- (a3);
+\draw[rel, blue!60!black] (t3) -- (a3);
+\node[draw=gray, dashed, rounded corners, fit=(t1)(t3)(a1)(a2)(a3), inner sep=5pt] (box) {};
+\node[font=\tiny, anchor=north west, gray] at (box.north west) {time step $t$};
+\end{tikzpicture}
+\caption{Time-sliced knowledge graph schema. Address nodes are instantiated per
+time step; history enters only through causal node attributes. Two-hop paths
+through an address define meta-relations: Tx$_1$ and Tx$_2$ are
+\texttt{CO\_SPEND} (shared input A), Tx$_1$ and Tx$_3$ are
+\texttt{CO\_RECEIVE} (shared output C), Tx$_2$ and Tx$_3$ are \texttt{CHAIN}
+(Tx$_2$ pays B, which spends in Tx$_3$).}
+\label{fig:schema}
+\end{figure}
+
+\subsection{Meta-relations and homophily}
+Two-hop paths through an Address@t node define three meta-relations between
+transactions: \texttt{CO\_SPEND} (a shared input address),
+\texttt{CO\_RECEIVE} (a shared output address) and \texttt{CHAIN} (one
+transaction pays an address that another spends from). Address instances
+linked to more than 200 transactions in a step (67 exchange-like hubs) are
+excluded from the meta-relations. Table~\ref{tab:homophily} reports, for
+labelled transactions, the class-adjusted homophily~\cite{platonov2023}
+(0 for random wiring, 1 for perfect homophily), together with the share of
+illicit transactions that have at least one labelled neighbour (coverage) and
+the share of their labelled neighbours that are illicit.
+
+\begin{table}[t]
+\caption{Label homophily of transaction relations (labelled nodes).}
+\label{tab:homophily}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& \multicolumn{3}{c}{Train (steps 1--34)} & \multicolumn{3}{c}{Test (steps 35--49)} \\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+Relation & Adj.\ hom. & Cov.\ & Ill.\ nbr & Adj.\ hom. & Cov.\ & Ill.\ nbr \\
+\midrule
+FLOWS\_TO   & 0.553 & 0.551 & 0.581 & 0.376 & 0.532 & 0.395 \\
+CO\_SPEND$^{a}$ & 1.000 & 0.186 & 1.000 & 1.000 & 0.125 & 1.000 \\
+CO\_RECEIVE & 1.000 & 0.759 & 1.000 & 1.000 & 0.667 & 1.000 \\
+CHAIN       & 0.865 & 0.527 & 0.871 & 0.309 & 0.547 & 0.315 \\
+KG union    & \textbf{0.954} & \textbf{0.906} & \textbf{0.957} & \textbf{0.915} & \textbf{0.930} & \textbf{0.921} \\
+\bottomrule
+\multicolumn{7}{@{}l}{\scriptsize Cov.: illicit transactions with a labelled neighbour. Ill.\ nbr: illicit share of}\\
+\multicolumn{7}{@{}l}{\scriptsize their labelled neighbours. $^{a}$Homophilous by construction (labels follow inputs).}
+\end{tabular}}
+\end{table}
+
+Three observations motivate graph learning on the TS-KG. First, the
+transaction graph used by prior GNN work is only moderately homophilous and
+becomes much less so after the dark-market shutdown in the test period
+(adjusted homophily 0.55$\rightarrow$0.38), consistent with its weak results
+under strict evaluation~\cite{maganti2026}. Second, the KG relations connect
+93\% of illicit test transactions to labelled neighbours, of which 92\% are
+illicit; this is the regime in which message passing is expected to
+help~\cite{zhu2020,platonov2023}. Third, part of this signal follows directly
+from how labels were made: transactions sharing an input address share the
+labelling entity, so \texttt{CO\_SPEND} is perfectly homophilous by
+construction. It covers only 13\% of illicit test transactions, however,
+whereas \texttt{CO\_RECEIVE}, which is not determined by the labelling rule,
+covers 67\%. In practice the shared output addresses are change addresses and
+deposit addresses of the same entity, the structure that forensic address
+clustering exploits~\cite{meiklejohn2013}. We return to this caveat in
+Section~\ref{sec:discussion}.
+
+\textbf{Address reuse across time is a licit signal.} Only 17 of the 1{,}083
+illicit test transactions touch an address that was active during training,
+against 5{,}833 of the 16{,}670 labelled test transactions overall. Illicit
+actors use fresh addresses, so cross-period address knowledge mainly
+identifies licit activity. Consequently, the \emph{unseen-entity} test view
+recommended by~\cite{safar2026} (test transactions none of whose addresses
+appeared in training) retains 98\% of the illicit test transactions.

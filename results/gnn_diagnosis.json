@@ -1,0 +1,10 @@
+{
+  "false_positives": 1599,
+  "fp_recurring_entity_share": 0.8667917448405253,
+  "fp_rate_recurring_licit": 0.23830811554332876,
+  "fp_rate_unseen_licit": 0.021799201719373655,
+  "recurring_fp_with_oor_address_input": 0.4393939393939394,
+  "recurring_tn_with_oor_address_input": 0.518961625282167,
+  "fp_with_oor_tx_kg_feature": 0.09881175734834272,
+  "tn_with_oor_tx_kg_feature": 0.15556191020875035
+}

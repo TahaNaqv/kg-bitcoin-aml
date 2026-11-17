@@ -1,0 +1,56 @@
+\section{Introduction}\label{sec:intro}
+
+Public blockchains record every payment on an immutable ledger, yet the
+parties behind the payments are pseudonymous. This combination makes
+cryptocurrencies attractive for money laundering, ransomware, darknet markets
+and scams; Chainalysis estimates that illicit addresses received
+USD~154 billion in 2025~\cite{chainalysis2026}. Exchanges and regulators
+therefore need automated transaction monitoring, and the Elliptic Bitcoin
+dataset~\cite{weber2019} and its extension Elliptic++~\cite{elmougy2023} have
+become the standard benchmarks for learning such monitors.
+
+Because Bitcoin transactions form a graph of fund flows, the benchmark has been
+a showcase for graph neural networks (GNNs). The evidence that GNNs actually
+help, however, has steadily eroded. Weber~et~al.\ already found that a Random
+Forest beat a graph convolutional network~\cite{weber2019}; recent
+re-evaluations show that once test-period structure is withheld from training,
+a Random Forest outperforms every GNN and randomly rewired edges work as well as
+the real ones~\cite{maganti2026}, and a multi-graph model fusing the
+transaction and wallet graphs still loses to gradient-boosted trees on the
+transaction task~\cite{ichull2026twin}. At the same time, an audit of the
+dataset itself revealed that 72 of its 93 ``local'' features are statistics of
+the participating addresses computed \emph{after} the end of the test
+period~\cite{safar2026}, so most published numbers---including the strong
+tree baselines---are affected by look-ahead leakage.
+
+This leaves the motivating question of graph learning on this problem
+unanswered: \emph{if the transaction graph does not help, is it because graph
+structure carries no signal, or because we have been giving models the wrong
+graph?} We argue the latter and test it. Elliptic transactions are linked only
+to other transactions of the same two-week time step, and the resulting graph
+is sparse (mean degree~2.3) and only moderately homophilous. Investigators,
+however, do not reason over transaction-to-transaction edges alone: they link
+transactions through the \emph{addresses} and \emph{entities} that control
+them~\cite{meiklejohn2013}. A knowledge graph (KG) that represents
+transactions and addresses as typed entities with typed relations makes this
+entity structure explicit.
+
+\textbf{Contributions.}
+\begin{enumerate}
+\item We build a \emph{time-sliced transaction--address knowledge graph}
+(TS-KG) from Elliptic++, in which addresses are instantiated per time step and
+carry only causally computed history attributes. All edges stay inside one
+time step, so the evaluation is strictly inductive by construction, and the
+graph is free of the look-ahead address features identified in~\cite{safar2026}.
+\item We provide a measured motivation for graph learning: the TS-KG
+relations are far more homophilous than the transaction graph (class-adjusted
+homophily 0.92 vs.\ 0.38 on the test period) and reach 93\% of illicit
+transactions, and we show which part of this signal is an artefact of how
+labels were assigned.
+\item We run a leakage-controlled comparison of tree ensembles and GNNs under
+one protocol, separating the effect of \emph{feature leakage}, of \emph{KG
+knowledge} supplied as features, and of \emph{message passing} over the KG,
+with relation-level ablations, an unseen-entity test view, imbalance
+strategies, explanations, and compute cost, over multiple seeds.
+\end{enumerate}
+All code is released for reproduction.\footnote{\url{https://github.com/TahaNaqv/kg-bitcoin-aml}}

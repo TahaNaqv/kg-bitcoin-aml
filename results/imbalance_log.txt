@@ -1,0 +1,41 @@
+XGB none         seed=0 F1(val-thr)=0.651 PR-AUC=0.669
+XGB none         seed=1 F1(val-thr)=0.521 PR-AUC=0.557
+XGB none         seed=2 F1(val-thr)=0.516 PR-AUC=0.524
+XGB class_weight seed=0 F1(val-thr)=0.652 PR-AUC=0.680
+XGB class_weight seed=1 F1(val-thr)=0.649 PR-AUC=0.683
+XGB class_weight seed=2 F1(val-thr)=0.654 PR-AUC=0.690
+XGB SMOTE        seed=0 F1(val-thr)=0.650 PR-AUC=0.683
+XGB SMOTE        seed=1 F1(val-thr)=0.635 PR-AUC=0.687
+XGB SMOTE        seed=2 F1(val-thr)=0.634 PR-AUC=0.679
+XGB SMOTE-ENN    seed=0 F1(val-thr)=0.653 PR-AUC=0.696
+XGB SMOTE-ENN    seed=1 F1(val-thr)=0.656 PR-AUC=0.700
+XGB SMOTE-ENN    seed=2 F1(val-thr)=0.665 PR-AUC=0.707
+RF none         seed=0 F1(val-thr)=0.485 PR-AUC=0.599
+RF none         seed=1 F1(val-thr)=0.436 PR-AUC=0.597
+RF none         seed=2 F1(val-thr)=0.576 PR-AUC=0.596
+RF class_weight seed=0 F1(val-thr)=0.613 PR-AUC=0.621
+RF class_weight seed=1 F1(val-thr)=0.593 PR-AUC=0.627
+RF class_weight seed=2 F1(val-thr)=0.602 PR-AUC=0.626
+RF SMOTE        seed=0 F1(val-thr)=0.595 PR-AUC=0.637
+RF SMOTE        seed=1 F1(val-thr)=0.620 PR-AUC=0.644
+RF SMOTE        seed=2 F1(val-thr)=0.608 PR-AUC=0.644
+RF SMOTE-ENN    seed=0 F1(val-thr)=0.617 PR-AUC=0.648
+RF SMOTE-ENN    seed=1 F1(val-thr)=0.619 PR-AUC=0.654
+RF SMOTE-ENN    seed=2 F1(val-thr)=0.612 PR-AUC=0.649
+model     strategy threshold_rule  f1_mean  f1_std  pr_auc_mean  pr_auc_std  roc_auc_mean  roc_auc_std  precision_mean  precision_std  recall_mean  recall_std  precision_at_1pct_mean  precision_at_1pct_std
+   RF        SMOTE            0.5    0.622   0.003        0.642       0.004         0.870        0.003           0.723          0.013        0.546       0.002                   0.994                  0.000
+   RF        SMOTE      val-tuned    0.608   0.012        0.642       0.004         0.870        0.003           0.658          0.034        0.564       0.005                   0.994                  0.000
+   RF    SMOTE-ENN            0.5    0.595   0.005        0.650       0.003         0.873        0.006           0.591          0.012        0.599       0.006                   0.992                  0.003
+   RF    SMOTE-ENN      val-tuned    0.616   0.004        0.650       0.003         0.873        0.006           0.668          0.017        0.571       0.009                   0.992                  0.003
+   RF class_weight            0.5    0.616   0.003        0.624       0.003         0.874        0.004           0.887          0.001        0.472       0.004                   0.994                  0.000
+   RF class_weight      val-tuned    0.603   0.010        0.624       0.003         0.874        0.004           0.675          0.039        0.545       0.009                   0.994                  0.000
+   RF         none            0.5    0.594   0.003        0.598       0.002         0.865        0.002           0.704          0.009        0.513       0.001                   0.994                  0.000
+   RF         none      val-tuned    0.499   0.071        0.598       0.002         0.865        0.002           0.481          0.146        0.538       0.017                   0.994                  0.000
+  XGB        SMOTE            0.5    0.623   0.012        0.683       0.004         0.910        0.005           0.685          0.027        0.571       0.001                   1.000                  0.000
+  XGB        SMOTE      val-tuned    0.640   0.009        0.683       0.004         0.910        0.005           0.750          0.024        0.558       0.003                   1.000                  0.000
+  XGB    SMOTE-ENN            0.5    0.573   0.008        0.701       0.006         0.923        0.002           0.519          0.010        0.640       0.010                   1.000                  0.000
+  XGB    SMOTE-ENN      val-tuned    0.658   0.006        0.701       0.006         0.923        0.002           0.823          0.068        0.550       0.020                   1.000                  0.000
+  XGB class_weight            0.5    0.609   0.010        0.684       0.005         0.906        0.000           0.633          0.026        0.587       0.008                   1.000                  0.000
+  XGB class_weight      val-tuned    0.652   0.003        0.684       0.005         0.906        0.000           0.820          0.023        0.541       0.008                   1.000                  0.000
+  XGB         none            0.5    0.214   0.371        0.583       0.076         0.805        0.083           0.260          0.451        0.182       0.316                   0.976                  0.021
+  XGB         none      val-tuned    0.563   0.076        0.583       0.076         0.805        0.083           0.636          0.177        0.513       0.016                   0.976                  0.021

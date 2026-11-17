@@ -1,0 +1,32 @@
+# Python / uv
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Data: Elliptic / Elliptic++ are CC BY-NC-ND - never commit raw or derived data
+data/
+*.csv
+!results/**/*.csv
+*.parquet
+*.pt
+*.npz
+
+# LaTeX build artefacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Submission archive
+*.zip

@@ -1,0 +1,15 @@
+model,group,share
+XGB ALL,address (leaky),0.44037118554115295
+XGB ALL,predecessor agg.,0.1640942394733429
+XGB ALL,successor agg. (leaky),0.19531044363975525
+XGB ALL,tx-intrinsic,0.2002241015434265
+XGB CLEAN+KG,KG address history,0.09152674674987793
+XGB CLEAN+KG,KG entity component,0.01742776297032833
+XGB CLEAN+KG,KG relation degree,0.07119666785001755
+XGB CLEAN+KG,predecessor agg.,0.3495568037033081
+XGB CLEAN+KG,tx-intrinsic,0.47029203176498413
+KG-SAGE (grad x input),KG address history,0.22207647562026978
+KG-SAGE (grad x input),KG entity component,0.005147104151546955
+KG-SAGE (grad x input),KG relation degree,0.05870009586215019
+KG-SAGE (grad x input),predecessor agg.,0.4237399101257324
+KG-SAGE (grad x input),tx-intrinsic,0.2903364598751068

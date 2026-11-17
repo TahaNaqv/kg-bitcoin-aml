@@ -1,0 +1,76 @@
+\section{Experimental Design}\label{sec:method}
+
+\textbf{Research questions.}
+\textbf{RQ1:} once feature leakage and evaluation protocol are controlled, does
+knowledge-graph enrichment improve illicit-transaction detection, and does
+message passing over the KG beat tree ensembles given the same knowledge?
+\textbf{RQ2:} which class-imbalance strategy gives the best precision--recall
+trade-off? \textbf{RQ3:} which features drive predictions, and do model
+families agree? \textbf{RQ4:} what does each approach cost to train on a
+CPU-only budget?
+
+\textbf{Tabular KG features.} To separate the value of KG \emph{knowledge}
+from the value of \emph{message passing}, we derive 15 causal features per
+transaction from the TS-KG: for input and output addresses separately, the
+number of addresses, the share and mean count of earlier appearances, the
+maximum address age and the number of hubs; the degree of the transaction
+under each relation (\texttt{FLOWS\_TO}, \texttt{CO\_SPEND},
+\texttt{CO\_RECEIVE}, \texttt{CHAIN}); and the size of its connected
+component in the step-local transaction--address graph (an entity-cluster
+proxy). A further variant (\textsc{+Nbr}) adds the mean \textsc{Clean}
+features of each transaction's KG neighbours, a hand-crafted one-hop
+aggregation that uses no labels.
+
+\textbf{Models.} Tree ensembles: logistic regression (LR), RF~\cite{breiman2001}
+(500 trees, balanced class weights) and XGBoost~\cite{chen2016} (depth 6,
+learning rate 0.05, up to 1{,}000 rounds with early stopping on validation
+PR-AUC, positive-class weight equal to the training imbalance ratio). Graph
+models: a relational GraphSAGE~\cite{hamilton2017,schlichtkrull2018}
+(\textsc{KG-SAGE}) with one mean-aggregation weight matrix per relation and
+direction, two layers of width 64, and jumping-knowledge concatenation into a
+two-layer classifier; \textsc{SAGE-Flow}, the same model restricted to
+\texttt{FLOWS\_TO} edges as in prior work; and an \textsc{MLP} of matched
+capacity with no edges. All graph models receive \emph{exactly} the inputs of
+the \textsc{Clean+KG} trees (\textsc{Clean} plus the 15 KG features), so the
+comparison isolates message passing. Address instances linked to a single
+transaction cannot connect transactions and are already summarised by the KG
+features; they are pruned from the graph (246{,}545 instances remain). Graph
+models are trained full-batch with Adam (weight decay $5\times10^{-4}$,
+dropout 0.3 on transaction representations) and class-weighted binary
+cross-entropy for up to 300 epochs, keeping the epoch with the best
+validation PR-AUC (patience 40). For each neural model the learning rate is
+selected from $\{10^{-3}, 5\times10^{-3}\}$ by mean validation PR-AUC over
+two tuning seeds that are disjoint from the evaluation seeds; all three
+selected $5\times10^{-3}$.
+
+\textbf{Ablations.} \textsc{KG-SAGE} without \texttt{FLOWS\_TO}, without
+input (\texttt{SPENDS\_IN}) and without output (\texttt{PAYS}) relations,
+and with address--transaction edges randomly rewired within each step (which
+destroys entity structure but preserves each transaction's number of
+addresses), following the edge-shuffle test of~\cite{maganti2026}.
+
+\textbf{Metrics.} The positive class is illicit. We report illicit-class F1,
+precision and recall at the threshold that maximises F1 on the validation
+window, threshold-free PR-AUC (average precision) and ROC-AUC, and precision
+among the 1\% highest-scored transactions (an analyst's review budget).
+Accuracy is not reported because predicting ``licit'' everywhere already scores
+93.5\% on the test set~\cite{he2009}. Results are means $\pm$ standard
+deviations over five seeds (two for graph ablations, three for imbalance
+strategies). We report the full test window, the unseen-entity view, and the
+periods before and after the dark-market shutdown at step
+43~\cite{weber2019}.
+
+\textbf{Imbalance strategies (RQ2).} For RF and XGBoost on \textsc{Clean+KG}:
+no correction, class weighting, SMOTE~\cite{chawla2002} and
+SMOTE-ENN~\cite{batista2004} applied to the training window only, each at the
+default 0.5 threshold and at the validation-tuned threshold.
+
+\textbf{Explanations (RQ3).} TreeSHAP~\cite{lundberg2017} for XGBoost on
+\textsc{All} and \textsc{Clean+KG}; gradient$\times$input attributions for
+\textsc{KG-SAGE} on the same inputs; agreement measured by Spearman rank
+correlation and top-10 overlap of feature importances.
+
+\textbf{Implementation.} Python 3.12, scikit-learn, XGBoost, PyTorch 2.15 and
+PyTorch Geometric 2.8 on a laptop CPU (8 threads, 14\,GB RAM, no GPU).
+Seeds fix all random choices, but multithreaded CPU arithmetic is not
+bit-exact, so graph-model results can differ slightly with the thread count.

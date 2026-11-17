@@ -1,0 +1,31 @@
+tune SAGE-FLOW  lr=0.001 seed=100 val PR-AUC=0.745
+tune SAGE-FLOW  lr=0.005 seed=100 val PR-AUC=0.762
+tune SAGE-FLOW  lr=0.005 seed=101 val PR-AUC=0.776
+tune KG-SAGE    lr=0.001 seed=100 val PR-AUC=0.902
+tune KG-SAGE    lr=0.001 seed=101 val PR-AUC=0.801
+tune KG-SAGE    lr=0.005 seed=100 val PR-AUC=0.921
+tune KG-SAGE    lr=0.005 seed=101 val PR-AUC=0.858
+selected learning rates: {'KG-SAGE': 0.005, 'MLP': 0.005, 'SAGE-FLOW': 0.005}
+MLP                seed=0 test F1=0.463 PR-AUC=0.511 epochs=3 (29s)
+MLP                seed=1 test F1=0.530 PR-AUC=0.615 epochs=2 (28s)
+MLP                seed=2 test F1=0.447 PR-AUC=0.509 epochs=14 (37s)
+MLP                seed=3 test F1=0.587 PR-AUC=0.622 epochs=2 (28s)
+MLP                seed=4 test F1=0.475 PR-AUC=0.373 epochs=110 (97s)
+SAGE-FLOW          seed=0 test F1=0.424 PR-AUC=0.350 epochs=100 (261s)
+selected learning rates: {'KG-SAGE': 0.005, 'MLP': 0.005, 'SAGE-FLOW': 0.005}
+KG-SAGE            seed=0 test F1=0.390 PR-AUC=0.213 epochs=65 (656s)
+KG-SAGE            seed=1 test F1=0.363 PR-AUC=0.177 epochs=92 (667s)
+KG-SAGE            seed=2 test F1=0.332 PR-AUC=0.188 epochs=60 (418s)
+KG-SAGE            seed=3 test F1=0.367 PR-AUC=0.304 epochs=9 (304s)
+KG-SAGE            seed=4 test F1=0.430 PR-AUC=0.256 epochs=80 (513s)
+SAGE-FLOW          seed=2 test F1=0.507 PR-AUC=0.419 epochs=134 (325s)
+SAGE-FLOW          seed=3 test F1=0.443 PR-AUC=0.356 epochs=133 (318s)
+SAGE-FLOW          seed=4 test F1=0.524 PR-AUC=0.397 epochs=144 (348s)
+KG-SAGE -flow      seed=0 test F1=0.288 PR-AUC=0.138 epochs=122 (906s)
+KG-SAGE -flow      seed=1 test F1=0.483 PR-AUC=0.336 epochs=71 (515s)
+KG-SAGE -input     seed=0 test F1=0.417 PR-AUC=0.232 epochs=105 (683s)
+KG-SAGE -input     seed=1 test F1=0.365 PR-AUC=0.189 epochs=103 (762s)
+KG-SAGE -output    seed=0 test F1=0.507 PR-AUC=0.421 epochs=43 (279s)
+KG-SAGE -output    seed=1 test F1=0.318 PR-AUC=0.169 epochs=111 (507s)
+KG-SAGE shuffled   seed=0 test F1=0.549 PR-AUC=0.520 epochs=146 (822s)
+KG-SAGE shuffled   seed=1 test F1=0.489 PR-AUC=0.422 epochs=109 (671s)

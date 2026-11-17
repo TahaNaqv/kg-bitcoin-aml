@@ -1,0 +1,145 @@
+\section{Results}\label{sec:results}
+
+\input{tables/main}
+
+\subsection{Feature leakage inflates the benchmark}
+Table~\ref{tab:main} first reproduces the literature: with \textsc{All}
+features, RF and XGBoost reach illicit F1 of about 0.80 and PR-AUC of about 0.79,
+in line with the strongest leakage-controlled baselines reported
+before~\cite{maganti2026,ichull2026twin}. Removing the address statistics
+computed after the test period and the successor aggregates
+(\textsc{Clean}) lowers F1 by about 0.24 and PR-AUC by 0.19--0.22 for both
+ensembles. A large part of the apparent skill on this benchmark therefore
+comes from information that is not available when a transaction must be
+scored, confirming the audit of~\cite{safar2026} quantitatively at the
+transaction level, in the same direction as the address-level drop reported
+in~\cite{liang2026}. The leaky models also score almost identically on the
+unseen-entity view (Table~\ref{tab:views}): because illicit actors rarely
+reuse addresses across periods (Section~\ref{sec:kg}), the leakage here acts
+through \emph{future} address statistics rather than through memorised
+entities.
+
+\subsection{Knowledge-graph knowledge recovers part of the gap}
+Adding the 15 causal TS-KG features raises XGBoost from F1
+\XgbCleanFone{} to \XgbCleanKgFone{} and PR-AUC
+from \XgbCleanPr{} to \XgbCleanKgPr{},
+with seed-to-seed standard deviations below 0.01; RF improves by a smaller
+margin. Information about the addresses a transaction touches is thus genuinely
+useful, provided it is computed causally. Adding hand-crafted one-hop
+aggregates over the KG (\textsc{+Nbr}) further improves ranking for RF
+(PR-AUC \RfCleanKgNbrPr{}, and \RfCleanKgNbrUnseenPr{} on unseen entities) but
+makes thresholded alerts less stable: XGBoost becomes sensitive to the seed,
+and most additional false alarms fall on recurring licit transactions that
+have no KG neighbours, whose scores shift between the validation and test
+periods. The compact structural features are the more robust choice.
+
+\subsection{Message passing over the knowledge graph}
+The neural models receive exactly the \textsc{Clean+KG} inputs of the
+trees, so differences between them isolate message passing. On the
+validation window KG-SAGE is the strongest leakage-controlled model (mean
+validation PR-AUC \KgSageValPr{}, against \XgbCleanKgValPr{} for XGBoost on
+the same features). On the full test period, however, it is the weakest
+(F1 \KgSageFone{}, PR-AUC \KgSagePr{}), below the MLP (\MlpPr{}), SAGE-Flow
+(\SageFlowPr{}) and XGBoost (\XgbCleanKgPr{}). The unseen-entity view
+(Table~\ref{tab:views}) locates the failure. On transactions of entities
+that never appeared in training, KG-SAGE reaches PR-AUC
+\KgSageUnseenPr{}, clearly above the MLP (\MlpUnseenPr{}) and SAGE-Flow
+(\SageFlowUnseenPr{}): message passing over the KG does help to recognise new
+entities, although it still trails XGBoost (\XgbCleanKgUnseenPr{}). The
+collapse comes from \emph{recurring} licit entities, mostly exchange-like
+clusters active since the training period: \DiagFpRecurShare{} of the
+\DiagFp{} false alarms of the seed-0 model fall on them, and their false-alarm
+rate is \DiagFpRateRecur{} against \DiagFpRateUnseen{} for licit transactions of
+new entities. These alarms are not explained by inputs outside the training
+range (\DiagOorFp{} of the falsely flagged recurring transactions touch an
+address node with an out-of-range attribute, against \DiagOorTn{} of the
+correctly cleared ones), so they reflect a change in the relational
+neighbourhoods of long-lived licit entities rather than extrapolation. Thus,
+even on a highly homophilous graph, learned message passing over entity
+structure is fragile under temporal shift, whereas the same knowledge,
+summarised as a handful of causal features and consumed by a tree ensemble,
+transfers.
+
+\input{tables/ablation}
+
+The relation ablations (Table~\ref{tab:ablation}) show the two sides of this
+behaviour. On unseen entities, the full TS-KG gives the best KG-SAGE PR-AUC
+(\AblFullUnseenPr{} over the ablation seeds); removing any relation lowers it,
+most of all removing the output relation (\AblNoOutUnseenPr{}), and randomly
+rewiring the address--transaction edges within each step lowers it to
+\AblShufUnseenPr{}, below the edge-free MLP. The real entity structure is
+therefore what helps the model recognise new entities. On the full test
+period, the same interventions have the opposite effect: removing relations
+improves PR-AUC, and rewiring raises it from \AblFullPr{} to \AblShufPr{}. As
+in the edge-shuffle test of~\cite{maganti2026}, real structure can hurt; the
+KG view adds that it hurts specifically through the neighbourhoods of
+recurring licit entities, while it helps for new ones.
+
+\subsection{Temporal drift and evaluation views}
+\input{tables/views}
+Fig.~\ref{fig:perstep} and Table~\ref{tab:views} show that every model,
+leaky or not, collapses after the dark-market shutdown at step
+43~\cite{weber2019}: illicit F1 over steps 43--49 is below 0.07 for all models,
+because the few illicit transactions that remain differ from those seen in
+training and the illicit base rate falls sharply~\cite{maganti2026}. Before
+the shutdown the differences between feature sets and models are large and
+consistent. Averaged metrics over the whole test period therefore mostly
+measure the first eight test steps, and per-step reporting is essential.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_per_step.pdf}
+\caption{Illicit F1 per test time step (mean over seeds). All models collapse
+after the dark-market shutdown at step 43.}
+\label{fig:perstep}
+\end{figure}
+
+\subsection{Class imbalance (RQ2)}
+\input{tables/imbalance}
+Table~\ref{tab:imbalance} shows that some correction for imbalance is
+essential: an uncorrected XGBoost model at the default threshold collapses on
+some seeds (F1 $0.21\pm0.37$). With correction, the strategies are close.
+For XGBoost, class weighting and SMOTE-ENN with a validation-tuned threshold
+are statistically tied (F1 0.652 and 0.658), and SMOTE-ENN gives the highest
+PR-AUC (0.701). For RF, all corrections reach F1 0.60--0.62. Tuning the
+threshold on the validation window matters more than the choice of
+resampling method for XGBoost, while for RF the default threshold is already
+adequate once classes are re-weighted. Oversampling cannot be applied to the
+graph models, so class weighting with threshold tuning is the strategy that
+transfers across both families.
+
+\subsection{Explanations (RQ3)}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_attribution.pdf}
+\caption{Share of total attribution per feature group: TreeSHAP for XGBoost,
+gradient$\times$input for KG-SAGE (test period, seed 0).}
+\label{fig:attr}
+\end{figure}
+Fig.~\ref{fig:attr} makes the leakage visible: XGBoost trained on
+\textsc{All} features places \ShapAllLeaky{} of its attribution on the leaky
+groups, \ShapAllAddr{} on address statistics computed after the test period
+alone. With \textsc{Clean+KG} inputs, the KG features receive \ShapCleanKgKg{}
+of the XGBoost attribution, led by the \texttt{CO\_RECEIVE} degree and the age
+of the input addresses, while the transaction's own size, fee and value
+statistics remain the strongest signals. KG-SAGE relies more on the graph
+(\GxiKg{} of its attribution), above all on address history
+(\GxiAddrHist{}, against \ShapCleanKgAddrHist{} for XGBoost). The two families
+agree only moderately (Spearman $\rho=\ExplainRho$ over all features,
+\ExplainOverlap{} of the top-10 features shared). Because address age and
+reuse change systematically over time, the stronger reliance of the graph
+model on address history is consistent with its weaker transfer to the test
+period. Feature names remain those of the dataset; the semantics recovered
+in~\cite{safar2026} make them interpretable (\eg\ Local~1--21 are value, fee
+and input/output statistics).
+
+\subsection{Computational cost (RQ4)}
+All experiments ran on a laptop CPU. Tree ensembles on \textsc{Clean+KG}
+features train in about \XgbCleanKgFit{}\,s (XGBoost) and \RfCleanKgFit{}\,s
+(RF); building the TS-KG and its 15 features takes under five seconds. The graph
+models are one to two orders of magnitude more expensive: \MlpFit{}\,s for the
+MLP, \SageFlowFit{}\,s for SAGE-Flow and \KgSageFit{}\,s for KG-SAGE per run,
+after pruning single-transaction address instances and replacing generic
+scatter operations with sparse matrix products, without which a KG-SAGE epoch
+took about 18\,s. Under a CPU budget, one of the cheapest models is also the most
+accurate leakage-controlled one.

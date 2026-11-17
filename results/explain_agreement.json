@@ -1,0 +1,28 @@
+{
+  "spearman_rho_all_features": 0.40674330415462084,
+  "top10_overlap": 4,
+  "top10_xgb": [
+    "size",
+    "Local_feature_3",
+    "Aggregate_feature_32",
+    "fees",
+    "kg_deg_co_receive",
+    "kg_in_addr_age_max",
+    "Aggregate_feature_2",
+    "Aggregate_feature_8",
+    "Local_feature_2",
+    "Aggregate_feature_13"
+  ],
+  "top10_kg_sage": [
+    "Aggregate_feature_13",
+    "kg_in_addr_age_max",
+    "Aggregate_feature_16",
+    "kg_in_addr_prior_mean",
+    "Aggregate_feature_7",
+    "Aggregate_feature_10",
+    "kg_deg_chain",
+    "Aggregate_feature_8",
+    "num_output_addresses",
+    "Local_feature_2"
+  ]
+}

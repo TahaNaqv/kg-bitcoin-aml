@@ -1,0 +1,22 @@
+\begin{table}[t]
+\caption{Imbalance strategies on Clean+KG features (test F1; three seeds). PR-AUC does not depend on the threshold.}
+\label{tab:imbalance}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Model & Strategy & F1 @0.5 & F1 @val & PR-AUC \\
+\midrule
+XGB & None & 0.214\,$\pm$\,0.371 & 0.563\,$\pm$\,0.076 & 0.583\,$\pm$\,0.076 \\
+XGB & Class weights & 0.609\,$\pm$\,0.010 & 0.652\,$\pm$\,0.003 & 0.684\,$\pm$\,0.005 \\
+XGB & SMOTE & 0.623\,$\pm$\,0.012 & 0.640\,$\pm$\,0.009 & 0.683\,$\pm$\,0.004 \\
+XGB & SMOTE-ENN & 0.573\,$\pm$\,0.008 & 0.658\,$\pm$\,0.006 & 0.701\,$\pm$\,0.006 \\
+\midrule
+RF & None & 0.594\,$\pm$\,0.003 & 0.499\,$\pm$\,0.071 & 0.598\,$\pm$\,0.002 \\
+RF & Class weights & 0.616\,$\pm$\,0.003 & 0.603\,$\pm$\,0.010 & 0.624\,$\pm$\,0.003 \\
+RF & SMOTE & 0.622\,$\pm$\,0.003 & 0.608\,$\pm$\,0.012 & 0.642\,$\pm$\,0.004 \\
+RF & SMOTE-ENN & 0.595\,$\pm$\,0.005 & 0.616\,$\pm$\,0.004 & 0.650\,$\pm$\,0.003 \\
+\bottomrule
+\end{tabular}
+\end{table}

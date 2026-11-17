@@ -1,0 +1,52 @@
+\section{Related Work}\label{sec:related}
+
+\textbf{Learning on Elliptic and Elliptic++.}
+Weber~et~al.\ introduced the Elliptic dataset and compared logistic
+regression, Random Forest (RF), multilayer perceptrons and graph convolutional
+networks (GCN)~\cite{kipf2017} under a temporal split, finding RF
+strongest~\cite{weber2019}. Elmougy and Liu released Elliptic++, which adds
+822k wallet addresses, address--transaction edges and address features, and
+again found RF best~\cite{elmougy2023}. Later work reports much higher scores
+with GCNs~\cite{asiri2025}, temporal graph attention~\cite{zheng2025}, wavelet
+graph transformers~\cite{lin2026} and heterogeneous GNNs over the
+transaction--wallet graph~\cite{ferretti2024,perezcano2025}, but these use
+random or stratified splits, accuracy-led reporting, or both, which inflate
+results on a temporally drifting, imbalanced problem~\cite{he2009}.
+TWIN-GNN~\cite{ichull2026twin} fuses transaction and wallet GraphSAGE
+encoders through cross-graph attention under a chronological label split; it
+improves wallet-level detection but trails gradient-boosted trees at the
+transaction level, with transductive message passing and a single seed.
+
+\textbf{Evaluation validity.}
+Maganti~\cite{maganti2026} showed that GNN rankings on Elliptic depend on the
+protocol: under strict inductive evaluation RF reaches F1~0.82 while the best
+GNN reaches 0.69, and shuffled edges help more than real ones. The author
+explicitly leaves open which fraud graphs admit a GNN advantage, naming denser,
+more homophilous graphs and richer edge types. {\v S}af{\'a}{\v r}~et~al.~\cite{safar2026}
+reverse-engineered the Elliptic features, showing that most local features are
+address statistics computed at block 575{,}059, after the test period
+(temporal leakage), that addresses shared across splits make samples
+non-independent, and that normalisation used the whole dataset. Liang~et~al.\
+found the same lifetime-summary leakage in the Elliptic++ address features
+and a positional rather than temporal split, under which the address-level RF
+F1 falls from 0.85 to 0.29~\cite{liang2026}. Malik~\cite{malik2026} showed that
+transaction- and actor-level alert queues disagree. We follow the
+recommendations of~\cite{safar2026} and extend the strict protocol
+of~\cite{maganti2026} to a knowledge graph.
+
+\textbf{Knowledge graphs and entity structure.}
+A knowledge graph represents typed entities and typed relations~\cite{hogan2021}.
+Blockchain ontologies such as BLONDiE~\cite{ugarterojas2020} model ledgers
+semantically, and KGBERT4Eth~\cite{jia2025kgbert4eth} injects a transaction KG
+into a transformer for Ethereum phishing detection. Classical Bitcoin forensics
+clusters addresses into entities through common-input and change-address
+heuristics~\cite{meiklejohn2013}. Relational GNNs~\cite{schlichtkrull2018}
+and GraphSAGE~\cite{hamilton2017} learn over such typed graphs; whether
+message passing helps depends strongly on homophily~\cite{zhu2020,platonov2023}.
+
+\textbf{Ensembles, imbalance and explanation.}
+On Ethereum data, XGBoost~\cite{chen2016} and stacked ensembles with
+SMOTE-ENN~\cite{chawla2002,batista2004} and SHAP~\cite{lundberg2017} explanations
+reach very high accuracy on small datasets~\cite{taher2024,chithanuru2025}. We
+use the same tools, but evaluate them on imbalance-aware metrics under a
+leakage-controlled temporal protocol.

@@ -1,0 +1,29 @@
+\section{Conclusion}\label{sec:conclusion}
+
+We asked when graph learning helps to detect illicit Bitcoin transactions once
+evaluation is free of leakage. Building a time-sliced transaction--address
+knowledge graph from Elliptic++ showed that the graph signal is real but lives
+in entity structure: KG relations are far more homophilous than the
+transaction graph, and causal KG features improve a leakage-controlled
+XGBoost from F1 \XgbCleanFone{} to \XgbCleanKgFone{}. Relational message
+passing over the same graph excels on the validation window and helps on new
+entities, but misfires on recurring licit entities in later periods, and all
+models collapse after the dark-market shutdown. At the same time, \XgbLeakShare{} of the F1 reported for standard
+baselines comes from features that are only observable after the test period.
+Future work should (i) evaluate on an entity-disjoint benchmark built from
+the full ledger with time-scoped features~\cite{safar2026}, (ii) test whether
+temporal or continually retrained GNNs close the validation--test gap, and
+(iii) extend the knowledge graph with off-chain entity attributions and other
+chains.
+
+\section*{Code and Data Availability}
+Code, configuration and all result files are available at
+\url{https://github.com/TahaNaqv/kg-bitcoin-aml}. Elliptic++ is available from
+its authors~\cite{elmougy2023}; the data are not redistributed because of the
+Elliptic licence (CC BY-NC-ND 4.0).
+
+\section*{Ethics Statement}
+The data are public, pseudonymous blockchain records without personal
+information. Labels reflect third-party investigative judgements and may be
+noisy or biased; model outputs are decision support for analysts, not
+evidence of wrongdoing by any individual or entity.

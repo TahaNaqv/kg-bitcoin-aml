@@ -1,0 +1,22 @@
+\begin{abstract}
+Graph neural networks are widely proposed for detecting illicit Bitcoin
+transactions, yet under strict evaluation they repeatedly lose to tree
+ensembles, leaving the motivation for graph learning unclear. We argue that
+prior work used the wrong graph and test this with a time-sliced
+transaction--address knowledge graph built from Elliptic++, in which addresses
+are instantiated per time step, carry only causally computed history, and no
+edge crosses a time step, so that evaluation is strictly inductive by
+construction. Guided by a recent reverse engineering of the dataset, we also
+remove features that are computed after the test period. Three findings
+emerge. First, these leaked features inflate the illicit-class F1 of standard
+baselines from \XgbCleanFone{} to \XgbAllFone{}. Second, the knowledge graph exposes
+entity structure that is far more homophilous than the transaction graph
+(class-adjusted homophily 0.92 versus 0.38 on the test period), and causal
+knowledge-graph features raise a leakage-controlled XGBoost from F1
+\XgbCleanFone{} to \XgbCleanKgFone{}. Third, relational message passing over the same graph achieves the best leakage-controlled
+validation score and improves over other neural models on previously unseen
+entities, but raises many false alarms on recurring licit entities and is the
+weakest model on the full test period.
+Graph structure helps when it is distilled into causal features for robust
+learners, not when it is learned end to end.
+\end{abstract}

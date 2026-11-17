@@ -1,0 +1,86 @@
+LR   ALL            seed=0 test F1=0.352 PR-AUC=0.272 (6.5s)
+RF   ALL            seed=0 test F1=0.800 PR-AUC=0.788 (28.6s)
+RF   ALL            seed=1 test F1=0.808 PR-AUC=0.787 (28.0s)
+RF   ALL            seed=2 test F1=0.795 PR-AUC=0.789 (27.1s)
+RF   ALL            seed=3 test F1=0.790 PR-AUC=0.788 (27.9s)
+RF   ALL            seed=4 test F1=0.800 PR-AUC=0.790 (29.1s)
+XGB  ALL            seed=0 test F1=0.808 PR-AUC=0.798 (20.1s)
+XGB  ALL            seed=1 test F1=0.804 PR-AUC=0.795 (22.5s)
+XGB  ALL            seed=2 test F1=0.799 PR-AUC=0.792 (27.4s)
+XGB  ALL            seed=3 test F1=0.800 PR-AUC=0.796 (23.9s)
+XGB  ALL            seed=4 test F1=0.804 PR-AUC=0.798 (25.7s)
+LR   CLEAN          seed=0 test F1=0.383 PR-AUC=0.204 (5.1s)
+RF   CLEAN          seed=0 test F1=0.561 PR-AUC=0.572 (27.7s)
+RF   CLEAN          seed=1 test F1=0.551 PR-AUC=0.570 (29.8s)
+RF   CLEAN          seed=2 test F1=0.566 PR-AUC=0.571 (21.0s)
+RF   CLEAN          seed=3 test F1=0.564 PR-AUC=0.575 (21.2s)
+RF   CLEAN          seed=4 test F1=0.564 PR-AUC=0.572 (23.8s)
+XGB  CLEAN          seed=0 test F1=0.551 PR-AUC=0.604 (6.1s)
+XGB  CLEAN          seed=1 test F1=0.548 PR-AUC=0.587 (5.1s)
+XGB  CLEAN          seed=2 test F1=0.577 PR-AUC=0.617 (5.9s)
+XGB  CLEAN          seed=3 test F1=0.566 PR-AUC=0.611 (7.7s)
+XGB  CLEAN          seed=4 test F1=0.562 PR-AUC=0.620 (7.2s)
+LR   CLEAN+KG       seed=0 test F1=0.322 PR-AUC=0.209 (4.7s)
+RF   CLEAN+KG       seed=0 test F1=0.613 PR-AUC=0.621 (24.3s)
+RF   CLEAN+KG       seed=1 test F1=0.593 PR-AUC=0.627 (23.0s)
+RF   CLEAN+KG       seed=2 test F1=0.602 PR-AUC=0.626 (20.5s)
+RF   CLEAN+KG       seed=3 test F1=0.598 PR-AUC=0.617 (20.6s)
+RF   CLEAN+KG       seed=4 test F1=0.614 PR-AUC=0.625 (24.2s)
+XGB  CLEAN+KG       seed=0 test F1=0.652 PR-AUC=0.680 (19.4s)
+XGB  CLEAN+KG       seed=1 test F1=0.649 PR-AUC=0.683 (17.0s)
+XGB  CLEAN+KG       seed=2 test F1=0.654 PR-AUC=0.690 (22.8s)
+XGB  CLEAN+KG       seed=3 test F1=0.645 PR-AUC=0.674 (19.8s)
+XGB  CLEAN+KG       seed=4 test F1=0.655 PR-AUC=0.688 (18.5s)
+LR   CLEAN+KG+NBR   seed=0 test F1=0.457 PR-AUC=0.305 (4.4s)
+RF   CLEAN+KG+NBR   seed=0 test F1=0.505 PR-AUC=0.663 (52.5s)
+RF   CLEAN+KG+NBR   seed=1 test F1=0.492 PR-AUC=0.658 (53.4s)
+RF   CLEAN+KG+NBR   seed=2 test F1=0.488 PR-AUC=0.649 (52.9s)
+RF   CLEAN+KG+NBR   seed=3 test F1=0.548 PR-AUC=0.662 (53.2s)
+RF   CLEAN+KG+NBR   seed=4 test F1=0.487 PR-AUC=0.652 (52.8s)
+XGB  CLEAN+KG+NBR   seed=0 test F1=0.254 PR-AUC=0.510 (5.0s)
+XGB  CLEAN+KG+NBR   seed=1 test F1=0.514 PR-AUC=0.689 (29.7s)
+XGB  CLEAN+KG+NBR   seed=2 test F1=0.648 PR-AUC=0.725 (27.1s)
+XGB  CLEAN+KG+NBR   seed=3 test F1=0.510 PR-AUC=0.692 (24.4s)
+XGB  CLEAN+KG+NBR   seed=4 test F1=0.460 PR-AUC=0.514 (6.8s)
+LR   ALL+KG+NBR     seed=0 test F1=0.494 PR-AUC=0.375 (7.8s)
+RF   ALL+KG+NBR     seed=0 test F1=0.763 PR-AUC=0.775 (74.9s)
+RF   ALL+KG+NBR     seed=1 test F1=0.648 PR-AUC=0.776 (86.4s)
+RF   ALL+KG+NBR     seed=2 test F1=0.612 PR-AUC=0.772 (87.6s)
+RF   ALL+KG+NBR     seed=3 test F1=0.813 PR-AUC=0.773 (84.0s)
+RF   ALL+KG+NBR     seed=4 test F1=0.820 PR-AUC=0.772 (84.0s)
+XGB  ALL+KG+NBR     seed=0 test F1=0.689 PR-AUC=0.783 (20.7s)
+XGB  ALL+KG+NBR     seed=1 test F1=0.618 PR-AUC=0.768 (14.7s)
+XGB  ALL+KG+NBR     seed=2 test F1=0.768 PR-AUC=0.790 (26.1s)
+XGB  ALL+KG+NBR     seed=3 test F1=0.696 PR-AUC=0.769 (15.5s)
+XGB  ALL+KG+NBR     seed=4 test F1=0.752 PR-AUC=0.756 (13.5s)
+model     features               view  f1_mean  f1_std  pr_auc_mean  pr_auc_std  roc_auc_mean  roc_auc_std  precision_mean  precision_std  recall_mean  recall_std  precision_at_1pct_mean  precision_at_1pct_std
+   LR          ALL               test    0.352     NaN        0.272         NaN         0.858          NaN           0.249            NaN        0.604         NaN                   0.054                    NaN
+   LR          ALL test_unseen_entity    0.407     NaN        0.331         NaN         0.825          NaN           0.306            NaN        0.608         NaN                   0.056                    NaN
+   LR   ALL+KG+NBR               test    0.494     NaN        0.375         NaN         0.883          NaN           0.372            NaN        0.733         NaN                   0.108                    NaN
+   LR   ALL+KG+NBR test_unseen_entity    0.551     NaN        0.420         NaN         0.865          NaN           0.440            NaN        0.738         NaN                   0.074                    NaN
+   LR        CLEAN               test    0.383     NaN        0.204         NaN         0.822          NaN           0.298            NaN        0.537         NaN                   0.024                    NaN
+   LR        CLEAN test_unseen_entity    0.438     NaN        0.265         NaN         0.801          NaN           0.368            NaN        0.540         NaN                   0.019                    NaN
+   LR     CLEAN+KG               test    0.322     NaN        0.209         NaN         0.834          NaN           0.227            NaN        0.553         NaN                   0.060                    NaN
+   LR     CLEAN+KG test_unseen_entity    0.343     NaN        0.241         NaN         0.773          NaN           0.247            NaN        0.558         NaN                   0.037                    NaN
+   LR CLEAN+KG+NBR               test    0.457     NaN        0.305         NaN         0.870          NaN           0.335            NaN        0.721         NaN                   0.054                    NaN
+   LR CLEAN+KG+NBR test_unseen_entity    0.492     NaN        0.352         NaN         0.843          NaN           0.371            NaN        0.727         NaN                   0.037                    NaN
+   RF          ALL               test    0.799   0.007        0.788       0.001         0.927        0.002           0.902          0.020        0.717       0.003                   1.000                  0.000
+   RF          ALL test_unseen_entity    0.804   0.007        0.797       0.001         0.901        0.002           0.902          0.020        0.725       0.002                   1.000                  0.000
+   RF   ALL+KG+NBR               test    0.731   0.096        0.774       0.002         0.911        0.002           0.766          0.202        0.721       0.008                   1.000                  0.000
+   RF   ALL+KG+NBR test_unseen_entity    0.810   0.013        0.801       0.001         0.903        0.002           0.912          0.045        0.729       0.008                   1.000                  0.000
+   RF        CLEAN               test    0.561   0.006        0.572       0.002         0.863        0.003           0.635          0.021        0.504       0.005                   0.951                  0.003
+   RF        CLEAN test_unseen_entity    0.592   0.005        0.602       0.002         0.839        0.003           0.711          0.020        0.507       0.005                   0.926                  0.000
+   RF     CLEAN+KG               test    0.604   0.009        0.623       0.004         0.871        0.007           0.681          0.035        0.543       0.007                   0.994                  0.000
+   RF     CLEAN+KG test_unseen_entity    0.641   0.004        0.664       0.003         0.855        0.007           0.773          0.025        0.548       0.007                   0.991                  0.000
+   RF CLEAN+KG+NBR               test    0.504   0.025        0.657       0.006         0.896        0.004           0.443          0.042        0.587       0.004                   1.000                  0.000
+   RF CLEAN+KG+NBR test_unseen_entity    0.682   0.004        0.732       0.005         0.896        0.004           0.800          0.014        0.595       0.004                   1.000                  0.000
+  XGB          ALL               test    0.803   0.004        0.796       0.002         0.928        0.004           0.902          0.012        0.724       0.002                   1.000                  0.000
+  XGB          ALL test_unseen_entity    0.808   0.004        0.804       0.002         0.903        0.004           0.903          0.011        0.732       0.002                   1.000                  0.000
+  XGB   ALL+KG+NBR               test    0.705   0.059        0.773       0.013         0.902        0.019           0.701          0.125        0.720       0.016                   0.999                  0.003
+  XGB   ALL+KG+NBR test_unseen_entity    0.713   0.055        0.785       0.012         0.874        0.020           0.707          0.118        0.729       0.017                   0.998                  0.004
+  XGB        CLEAN               test    0.561   0.012        0.608       0.013         0.892        0.008           0.630          0.042        0.506       0.011                   0.963                  0.020
+  XGB        CLEAN test_unseen_entity    0.591   0.010        0.639       0.014         0.872        0.008           0.704          0.037        0.510       0.011                   0.957                  0.030
+  XGB     CLEAN+KG               test    0.651   0.004        0.683       0.007         0.905        0.004           0.821          0.016        0.540       0.007                   1.000                  0.000
+  XGB     CLEAN+KG test_unseen_entity    0.658   0.004        0.704       0.007         0.884        0.005           0.827          0.016        0.547       0.007                   1.000                  0.000
+  XGB CLEAN+KG+NBR               test    0.477   0.143        0.626       0.105         0.873        0.066           0.414          0.185        0.628       0.020                   0.998                  0.003
+  XGB CLEAN+KG+NBR test_unseen_entity    0.627   0.160        0.716       0.079         0.868        0.067           0.675          0.252        0.635       0.020                   0.994                  0.012

@@ -1,0 +1,60 @@
+\section{Data and Leakage Audit}\label{sec:data}
+
+\textbf{Elliptic++.} The dataset~\cite{elmougy2023} contains 203{,}769 Bitcoin
+transactions in 49 time steps of about two weeks (January 2016 to October 2017),
+234{,}355 fund-flow edges between transactions, 822{,}942 addresses, 477{,}117
+address$\rightarrow$transaction (input) edges and 837{,}124
+transaction$\rightarrow$address (output) edges. Of the transactions, 4{,}545
+are labelled illicit, 42{,}019 licit and 157{,}205 unknown. Labels are derived
+from the entity controlling the transaction's input addresses~\cite{weber2019,safar2026}.
+We verified that none of the 234{,}355 transaction edges crosses a time step:
+each step is a separate graph.
+
+\textbf{Temporal protocol.} We follow the chronological split of
+Weber~et~al.~\cite{weber2019}: steps 1--29 are used to fit models, steps 30--34
+form a validation window used only for early stopping and for choosing the
+decision threshold, and steps 35--49 form the untouched test set (16{,}670
+labelled transactions, 1{,}083 illicit). Every model family uses exactly the
+same windows. Standardisation statistics are computed on training-period
+nodes only.
+
+\textbf{Feature audit.} Using the feature semantics recovered
+in~\cite{safar2026}, we partition the 182 transaction features of Elliptic++
+by \emph{when} they become observable (Table~\ref{tab:features}). Address
+statistics (lifetime, balance, transaction counts) were computed once at block
+575{,}059, about a year and a half after the last test transaction, and aggregates
+over \emph{successor} transactions depend on later spending. Both violate the
+rule that a feature must be observable before the prediction
+time~\cite{kaufman2012,kapoor2023}. We therefore define two feature sets:
+\textsc{All}, as used in the literature, and \textsc{Clean}, which keeps only
+transaction-intrinsic features and aggregates over predecessor transactions.
+The original features are z-scored over the whole dataset; because this is an
+affine map, re-standardising on the training window removes its effect.
+
+\begin{table}[t]
+\caption{Elliptic++ transaction features grouped by observability.}
+\label{tab:features}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llrc@{}}
+\toprule
+Group & Columns (Elliptic++ names) & \# & \textsc{Clean} \\
+\midrule
+Tx-intrinsic & Local 1--21 & 21 & \checkmark \\
+Address statistics at block 575{,}059 & Local 22--93 & 72 & -- \\
+Predecessor aggregates & Aggregate 1--36 & 36 & \checkmark \\
+Successor aggregates & Aggregate 37--72 & 36 & -- \\
+Elliptic++ tx additions & in-degree, BTC, fee, size, \ldots & 16 & \checkmark \\
+Successor count & out\_txs\_degree & 1 & -- \\
+\midrule
+\multicolumn{2}{@{}l}{Total (\textsc{All} / \textsc{Clean})} & 182 & 73 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The 965 transactions that Elliptic++ could not de-anonymise lack the 16
+additions; we impute training-period medians and add a missing-value flag.
+We do not use the released Elliptic++ address features, which are lifetime
+summaries with the same look-ahead problem~\cite{liang2026}.

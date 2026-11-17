@@ -1,0 +1,17 @@
+{
+  "transactions": 203769,
+  "addresses": 822942,
+  "address_instances": 920691,
+  "hub_instances_gt_200": 67,
+  "edges_flow": 234355,
+  "edges_spends_in": 477117,
+  "edges_pays": 837124,
+  "cross_step_flow_edges": 0,
+  "addresses_active_in_multiple_steps": 61487,
+  "addresses_spanning_train_and_test": 10471,
+  "test_labelled": 16670,
+  "test_illicit": 1083,
+  "test_labelled_touching_train_address": 5833,
+  "test_illicit_touching_train_address": 17,
+  "mean_flow_degree": 2.3002026804862368
+}

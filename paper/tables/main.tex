@@ -1,0 +1,28 @@
+\begin{table*}[t]
+\caption{Illicit-class results on the test period (steps 35--49), mean $\pm$ std over seeds. Thresholds are tuned on the validation window. Best leakage-controlled value in bold.}
+\label{tab:main}
+\centering
+\footnotesize
+\begin{tabular}{@{}llccccccr@{}}
+\toprule
+Model & Features & F1 & Precision & Recall & PR-AUC & ROC-AUC & P@1\% & Fit (s) \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Leaky features (as in prior work)}} \\
+RF & All & 0.799\,$\pm$\,0.007 & 0.902\,$\pm$\,0.020 & 0.717\,$\pm$\,0.003 & 0.788\,$\pm$\,0.001 & 0.927\,$\pm$\,0.002 & 1.000\,$\pm$\,0.000 & 28 \\
+XGB & All & 0.803\,$\pm$\,0.004 & 0.902\,$\pm$\,0.012 & 0.724\,$\pm$\,0.002 & 0.796\,$\pm$\,0.002 & 0.928\,$\pm$\,0.004 & 1.000\,$\pm$\,0.000 & 24 \\
+\multicolumn{9}{@{}l}{\textit{Leakage-controlled features}} \\
+LR & Clean & 0.383 & 0.298 & 0.537 & 0.204 & 0.822 & 0.024 & 5 \\
+RF & Clean & 0.561\,$\pm$\,0.006 & 0.635\,$\pm$\,0.021 & 0.504\,$\pm$\,0.005 & 0.572\,$\pm$\,0.002 & 0.863\,$\pm$\,0.003 & 0.951\,$\pm$\,0.003 & 25 \\
+XGB & Clean & 0.561\,$\pm$\,0.012 & 0.630\,$\pm$\,0.042 & 0.506\,$\pm$\,0.011 & 0.608\,$\pm$\,0.013 & 0.892\,$\pm$\,0.008 & 0.963\,$\pm$\,0.020 & 6 \\
+\multicolumn{9}{@{}l}{\textit{+ knowledge-graph features}} \\
+RF & Clean+KG & 0.604\,$\pm$\,0.009 & 0.681\,$\pm$\,0.035 & 0.543\,$\pm$\,0.007 & 0.623\,$\pm$\,0.004 & 0.871\,$\pm$\,0.007 & 0.994\,$\pm$\,0.000 & 23 \\
+XGB & Clean+KG & \textbf{0.651\,$\pm$\,0.004} & 0.821\,$\pm$\,0.016 & 0.540\,$\pm$\,0.007 & \textbf{0.683\,$\pm$\,0.007} & \textbf{0.905\,$\pm$\,0.004} & \textbf{1.000\,$\pm$\,0.000} & 20 \\
+RF & Clean+KG+Nbr & 0.615\,$\pm$\,0.028 & 0.648\,$\pm$\,0.071 & 0.589\,$\pm$\,0.006 & 0.677\,$\pm$\,0.003 & 0.899\,$\pm$\,0.005 & 0.996\,$\pm$\,0.003 & 115 \\
+XGB & Clean+KG+Nbr & 0.556\,$\pm$\,0.119 & 0.527\,$\pm$\,0.183 & 0.617\,$\pm$\,0.015 & 0.668\,$\pm$\,0.075 & 0.880\,$\pm$\,0.064 & 0.992\,$\pm$\,0.012 & 67 \\
+\multicolumn{9}{@{}l}{\textit{Neural models (inputs = Clean+KG)}} \\
+MLP & Clean+KG & 0.500\,$\pm$\,0.058 & 0.513\,$\pm$\,0.168 & 0.529\,$\pm$\,0.082 & 0.526\,$\pm$\,0.101 & 0.884\,$\pm$\,0.009 & 0.838\,$\pm$\,0.224 & 43 \\
+SAGE-Flow & Clean+KG & 0.461\,$\pm$\,0.051 & 0.485\,$\pm$\,0.077 & 0.445\,$\pm$\,0.051 & 0.359\,$\pm$\,0.056 & 0.863\,$\pm$\,0.019 & 0.508\,$\pm$\,0.137 & 306 \\
+KG-SAGE & Clean+KG & 0.376\,$\pm$\,0.036 & 0.276\,$\pm$\,0.033 & 0.601\,$\pm$\,0.082 & 0.227\,$\pm$\,0.052 & 0.838\,$\pm$\,0.018 & 0.147\,$\pm$\,0.148 & 511 \\
+\bottomrule
+\end{tabular}
+\end{table*}

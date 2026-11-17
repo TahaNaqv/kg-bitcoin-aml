@@ -1,0 +1,57 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{iftex}
+\ifXeTeX
+  % IEEEtran selects Times under pdfLaTeX; use the equivalent TeX Gyre Termes under XeTeX
+  \usepackage{fontspec}
+  \setmainfont{texgyretermes}[Extension=.otf, UprightFont=*-regular, BoldFont=*-bold,
+    ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\fi
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,fit}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\eg}{e.g.,}
+\newcommand{\ie}{i.e.,}
+\input{tables/numbers}
+
+\begin{document}
+
+\title{Knowledge Graph Enrichment for Leakage-Free Illicit Bitcoin Transaction Detection: When Does Graph Learning Help?}
+
+\author{\IEEEauthorblockN{S Muhammad Taha Abbas Naqvi}
+\IEEEauthorblockA{\textit{Department of Data Science} \\
+\textit{FAST National University of Computer and Emerging Sciences}\\
+Islamabad, Pakistan \\
+i268004@isb.nu.edu.pk}
+}
+
+\maketitle
+
+%% ABSTRACT %%
+\input{sections/abstract}
+
+\begin{IEEEkeywords}
+anti-money laundering, Bitcoin, knowledge graph, graph neural networks, data leakage, homophily, explainable AI
+\end{IEEEkeywords}
+
+\input{sections/introduction}
+\input{sections/related}
+\input{sections/data}
+\input{sections/kg}
+\input{sections/method}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\input{sections/references}
+
+\end{document}
